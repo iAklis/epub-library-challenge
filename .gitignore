@@ -2,4 +2,4 @@ flag.php
 *.dtd
 *~
 */
-:q
+.*
