@@ -63,7 +63,7 @@ $navMap = $index->navMap->{'navPoint'};
         <?php 
           foreach ($navMap as $key => $value) {
             $iter =  $value->{'navLabel'}->{'text'};
-            echo "<tr><td>$iter</th></td>";
+            echo "<tr><td><a href=\"".$extracted_path.dirname($source_file).'/'.${value}->{'content'}['src']."\">$iter</a></th></td>";
           } 
         ?>
       </tbody>
