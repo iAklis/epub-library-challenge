@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+error_reporting(1);
 ini_set('display_errors', 'Off');
 ini_set('allow_url_fopen', 'Off');
 
@@ -63,7 +63,7 @@ $navMap = $index->navMap->{'navPoint'};
         <?php 
           foreach ($navMap as $key => $value) {
             $iter =  $value->{'navLabel'}->{'text'};
-            echo "<tr><td><a href=\"".$extracted_path.dirname($source_file).'/'.${value}->{'content'}['src']."\">$iter</a></th></td>";
+            echo "<tr><td><a href=\"".$extracted_path.dirname($source_file).'/'.$value->{'content'}['src']."\">$iter</a></th></td>";
           } 
         ?>
       </tbody>
