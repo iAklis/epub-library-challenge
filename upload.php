@@ -1,5 +1,5 @@
 <?php
-error_reporting(1);
+error_reporting(0);
 ini_set('display_errors', 'Off');
 ini_set('allow_url_fopen', 'Off');
 
@@ -12,7 +12,7 @@ if($files['type']!=="application/epub+zip") {
 //extract
 $file = new ZipArchive;
 $epub_name = $files['tmp_name'];
-$extracted_path = basename($files['name'],".epub")."/";
+$extracted_path = 'uploads/'.basename($files['name'],".epub")."/";
 if ($file->open($epub_name) === TRUE){
   $file->extractTo($extracted_path);
   $file->close();
