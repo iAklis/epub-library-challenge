@@ -3,7 +3,6 @@ error_reporting(0);
 ini_set('display_errors', 'Off');
 ini_set('allow_url_fopen', 'Off');
 
-session_start();
 $uploaded_path =  dirname(__FILE__).'/uploads/';
 
 $book_list = array();
@@ -15,19 +14,17 @@ foreach ($iterator as $eachbook) $book_list[] = $eachbook->__toString();
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LIBRARY - HCTF</title>
     <meta charset="UTF-8">
     <link href="static/mui.min.css" rel="stylesheet" type="text/css" />
     <link href="static/style.css" rel="stylesheet" type="text/css" />
   </head>
+
   <body>
-    <div class="mui-appbar">
-      <table width="100%">
-        <tr style="vertical-align:middle;">
-          <td class="mui--appbar-height">Aklis's Library</td>
-          <td class="mui--appbar-height" align="right">Login</td>
-        </tr>
-      </table>
+    <div class="mui-container mui--text-center">
+      <form action="upload.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" /><br />
+        <input type="submit" name="submit" value="Submit" class="mui-btn mui-btn--flat mui-btn--primary"/>
+      </form>
     </div>
     <div class="mui--text-center">
       <table class="mui-table mui-table--bordered">
