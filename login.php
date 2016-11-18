@@ -1,14 +1,6 @@
 <?php
 include("config.php");
-
-
-function decrypt($str) {
-  return $str ? $str : '';
-}
-
-function encrypt($str) {
-  return $str;
-}
+include("comm.php");
 
 if (isset($_COOKIE['username']) && decrypt($_COOKIE['username'])!=="") {
   $_SESSION['username'] = decrypt($_COOKIE['username']);
@@ -34,8 +26,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
   if($result = $mysqli->query("select * from users where username='$username' and password='$password'")) {
     if ($result->num_rows === 1) {
       $row = $result->fetch_array();
-      var_dump($row);
       setcookie('username', encrypt($row['username']));
+      $_SESSION['username'] = $row['username'];
       header("Location: /index.php");
     } else {
       exit("用户名或密码错误 QAQ");
@@ -55,7 +47,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
   </head>
   <body>
     <form action="" method="POST">
-      <legend>Register</legend>
+      <legend>Log in</legend>
       <div class="mui-textfield">
         <input type="text" placeholder="Username" name="username">
       </div>

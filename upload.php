@@ -1,7 +1,9 @@
 <?php
-error_reporting(0);
-ini_set('display_errors', 'Off');
-ini_set('allow_url_fopen', 'Off');
+include("config.php");
+if ($_SESSION['username']!=='admin') {
+  echo "你不是我的admin!";
+  exit();
+}
 
 //upload
 $files = isset($_FILES['file']) ? $_FILES['file'] : exit();
@@ -52,7 +54,6 @@ $navMap = $index->navMap->{'navPoint'};
     <link href="static/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-
     <table class="mui-table mui-table--bordered">
       <thead>
         <tr>

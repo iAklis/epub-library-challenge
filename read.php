@@ -1,8 +1,5 @@
 <?php
-error_reporting(0);
-ini_set('display_errors', 'Off');
-ini_set('allow_url_fopen', 'Off');
-
+include("config.php");
 $uploaded_path =  dirname(__FILE__).'/uploads/';
 
 $book_name = trim($_GET['bookname']);
@@ -45,7 +42,14 @@ $navMap = $index->navMap->{'navPoint'};
     <link href="static/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-
+    <div class="mui-appbar">
+      <table width="100%">
+        <tr style="vertical-align:middle;">
+          <td class="mui--appbar-height">Hello, <?=$_SESSION['username'];?></td>
+          <td class="mui--appbar-height" align="right"><a href="/login.php">Login</a></td>
+        </tr>
+      </table>
+    </div>
     <table class="mui-table mui-table--bordered">
       <thead>
         <tr>

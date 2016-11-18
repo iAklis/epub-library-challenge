@@ -1,8 +1,10 @@
 <?php
 include("config.php");
+include("comm.php");
 
-if ($_SESSION['username']!=='') {
-  header('Location: /index.php');
+if (isset($_COOKIE['username']) && decrypt($_COOKIE['username'])!=="") {
+  $_SESSION['username'] = decrypt($_COOKIE['username']);
+  header("Location: /index.php");
   exit();
 }
 

@@ -1,7 +1,12 @@
 <?php
-error_reporting(0);
-ini_set('display_errors', 'Off');
-ini_set('allow_url_fopen', 'Off');
+include("config.php");
+include("comm.php");
+
+if (isset($_COOKIE['username']) && decrypt($_COOKIE['username'])!=="admin") {
+  $_SESSION['username'] = decrypt($_COOKIE['username']);
+  header("Location: /login.php");
+  exit();
+}
 
 $uploaded_path =  dirname(__FILE__).'/uploads/';
 
@@ -20,6 +25,14 @@ foreach ($iterator as $eachbook) $book_list[] = $eachbook->__toString();
   </head>
 
   <body>
+    <div class="mui-appbar">
+      <table width="100%">
+        <tr style="vertical-align:middle;">
+          <td class="mui--appbar-height">Hello, <?=$_SESSION['username'];?></td>
+          <td class="mui--appbar-height" align="right"><a href="/login.php">Login</a></td>
+        </tr>
+      </table>
+    </div>
     <div class="mui-container mui--text-center">
       <form action="upload.php" method="post" enctype="multipart/form-data">
         <input type="file" name="file" /><br />

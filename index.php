@@ -19,13 +19,23 @@ foreach ($iterator as $eachbook) $book_list[] = $eachbook->__toString();
     <meta charset="UTF-8">
     <link href="static/mui.min.css" rel="stylesheet" type="text/css" />
     <link href="static/style.css" rel="stylesheet" type="text/css" />
+    <style>
+      .mui--appbar-height a {
+        color: white;
+      }
+    </style>
   </head>
   <body>
     <div class="mui-appbar">
       <table width="100%">
         <tr style="vertical-align:middle;">
-          <td class="mui--appbar-height">Aklis's Library</td>
-          <td class="mui--appbar-height" align="right">Login</td>
+          <td class="mui--appbar-height"> Welcome to Aklis's Library   <?=$_SESSION['username'];?></td>
+          <?php if (isset($_SESSION['username'])): ?>
+          <td class="mui--appbar-height"><a href="/manager.php">Manager</a></td>
+          <td class="mui--appbar-height"><a href="/logout.php">Logout</a></td>
+          <?php else: ?>
+          <td class="mui--appbar-height"><a href="/login.php">Login</a></td>
+          <?php endif; ?>
         </tr>
       </table>
     </div>

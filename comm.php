@@ -1,35 +1,39 @@
 <?php
-function encrypt( $string ) {
-  $pass="23333";
+function encrypt($string) {
+  $密钥 = "23333";
 	$algorithm = 'rijndael-128';
-	$key = md5($pass, true);
+	$key = md5($密钥, true);
 	$iv_length = mcrypt_get_iv_size( $algorithm, MCRYPT_MODE_CBC );
 	$iv = mcrypt_create_iv( $iv_length, MCRYPT_RAND );
 	$encrypted = mcrypt_encrypt( $algorithm, $key, $string, MCRYPT_MODE_CBC, $iv );
-	$result = base64url_encode( $iv . $encrypted );
+	$result = urlsafe_b64encode( $iv . $encrypted );
 	return $result;
 }
 
 function decrypt( $string ) {
-  $pass="23333";
+  $密钥 = "23333";
 	$algorithm =  'rijndael-128';
-	$key = md5($pass, true );
+	$key = md5($密钥, true );
 	$iv_length = mcrypt_get_iv_size( $algorithm, MCRYPT_MODE_CBC );
-	$string = base64url_decode( $string );
+	$string = urlsafe_b64decode( $string );
 	$iv = substr( $string, 0, $iv_length );
 	$encrypted = substr( $string, $iv_length );
 	$result = mcrypt_decrypt( $algorithm, $key, $encrypted, MCRYPT_MODE_CBC, $iv );	
-	$result = rtrim($result, "\0");
-	if (!preg_match("/^\w+$/",$result)) {
-		$result="";
-	}
+	$result = rtrim($result, "\0");															
 	return $result;
 }
 
-function base64url_encode($data) { 
-	return rtrim(strtr(base64_encode($data), '+/', '-_'), '='); 
-} 
+function urlsafe_b64encode($string) {
+   $data = base64_encode($string);
+   $data = str_replace(array('+','/','='),array('-','_',''),$data);
+   return $data;
+}
 
-function base64url_decode($data) { 
-	return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT)); 
-} 
+function urlsafe_b64decode($string) {
+   $data = str_replace(array('-','_'),array('+','/'),$string);
+   $mod4 = strlen($data) % 4;
+   if ($mod4) {
+       $data .= substr('====', $mod4);
+   }
+   return base64_decode($data);
+}

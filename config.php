@@ -1,10 +1,8 @@
 <?php
-
 define('MYSQL_HOST', '127.0.0.1');
 define('MYSQL_USER', 'aklis');
 define('MYSQL_PASSWORD', 'aklis');
 define('MYSQL_DATABASE', 'library');
-define('flag_half_1', 'hctf{Serena_is_');
 
 
 error_reporting(1);
