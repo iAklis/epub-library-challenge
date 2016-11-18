@@ -47,12 +47,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
   </head>
   <body>
     <form action="" method="POST">
-      <legend>Log in</legend>
+      <legend>Log in   - <a href='/register.php'>Register</a></legend>
       <div class="mui-textfield">
         <input type="text" placeholder="Username" name="username">
       </div>
       <div class="mui-textfield">
-        <input type="text" placeholder="Password" name="password">
+        <input type="password" placeholder="Password" name="password">
       </div>
       <input type="submit" class="mui-btn mui-btn--raised" name="gogogo" value="苟!" ></button>
     </form>

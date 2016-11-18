@@ -9,8 +9,6 @@ if (isset($_COOKIE['username']) && decrypt($_COOKIE['username'])!=="") {
 }
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
-  
-  // vaild_code
 
   if ($_POST['username']==='admin') {
     exit('Aklis is admin! 你想干啥？');
@@ -19,6 +17,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
   if ($_POST['username']==='' || $_POST['password']==='' || $_POST['gogogo']!=='苟!')
   {
     exit("搞事搞事搞事.jpg");
+  }
+
+  if (strlen($_POST['username'])<= 5 || strlen($_POST['username'])>=20)
+  {
+    exit("用户名字符数请大于5且小于20");
   }
 
   $mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
@@ -64,7 +67,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         <input type="text" placeholder="Username" name="username">
       </div>
       <div class="mui-textfield">
-        <input type="text" placeholder="Password" name="password">
+        <input type="password" placeholder="Password" name="password">
       </div>
       <input type="submit" class="mui-btn mui-btn--raised" name="gogogo" value="苟!" ></button>
     </form>
